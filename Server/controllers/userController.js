@@ -19,5 +19,16 @@ userController.createUser = async (req, res, next) =>  {
     };
 }
 
+userController.findUser = async (req, res, next) => {
+    try{
+        //find a user
+        const { username } = req.params;
+        const user = await User.findOne({username: username});
+        res.locals.user = user;
+        return next()
+    } catch (err){
+        return next(err)
+    }
+}
 //make sure that the rest of the software can read this
 module.exports = userController;

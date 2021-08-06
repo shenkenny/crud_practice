@@ -11,7 +11,11 @@ const userController = require('../controllers/userController');
 // to create a new user go to this route
 router.post('/new', userController.createUser, (req, res) => {
     // userController returns the   
-    return res.status(200).send("user created");
+    return res.status(200).json(res.locals.newUser);
+});
+
+router.get('/:username', userController.findUser, (req, res) => {
+    return res.status(200).json(res.locals.user);
 });
 
 module.exports = router;
